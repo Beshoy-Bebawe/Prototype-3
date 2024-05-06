@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public bool isOnGround = true;
     public bool gameOver = false;
     public bool canDoubleJump = false;
+    public bool OnDash = false; 
     private Animator playerAnim;
     public ParticleSystem explosionParticle;
     public ParticleSystem dirtParticle;
@@ -47,7 +48,19 @@ public class PlayerController : MonoBehaviour
           playerAudio.PlayOneShot(jumpSound , 1.0f);
             playerAnim.SetTrigger("Jump_trig");
             dirtParticle.Stop();
+
+        } 
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+         OnDash = true;
+       
+         
         }
+        else
+        {
+            OnDash = false;
+        }
+    
         
     }
     private void OnCollisionEnter (Collision collision)
@@ -69,5 +82,9 @@ public class PlayerController : MonoBehaviour
                 playerAudio.PlayOneShot(crashSound,1.0f);
             }
       
+
+     
+
+
     }
 }
