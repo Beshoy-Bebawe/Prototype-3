@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody playerRb;
+private Rigidbody playerRb;
     public float jumpForce;
     public float doublejumpForce;
     public float gravityModifier;
@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public bool gameOver = false;
     public bool canDoubleJump = false;
     public bool OnDash = false; 
+    
     private Animator playerAnim;
     public ParticleSystem explosionParticle;
     public ParticleSystem dirtParticle;
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !gameOver)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -53,12 +55,17 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
          OnDash = true;
+         playerAnim.SetFloat("DoubleSpeed_f", 5000);
+
+        //scoreTimer ++;
        
          
         }
         else
         {
             OnDash = false;
+            playerAnim.SetFloat("DoubleSpeed_f", 1);
+
         }
     
         
